@@ -1,5 +1,7 @@
 package cn.xpbootcamp.tennis;
 
+import static java.lang.Math.abs;
+
 public class TennisGame3 extends TennisGame {
 
 
@@ -8,18 +10,17 @@ public class TennisGame3 extends TennisGame {
     }
 
     public String getScore() {
-        String s;
         int playerOnePoint = playerOne.getPoint();
         int playerTwoPoint = playerTwo.getPoint();
         if (playerOnePoint < 4 && playerTwoPoint < 4 && playerOnePoint + playerTwoPoint != 6) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
-            s = p[playerOnePoint];
-            return (playerOnePoint == playerTwoPoint) ? s + "-All" : s + "-" + p[playerTwoPoint];
+            return (playerOnePoint == playerTwoPoint)
+                    ? Score.getScore(playerOnePoint)
+                    + "-All" : Score.getScore(playerOnePoint) + "-" + Score.getScore(playerTwoPoint);
         } else {
             if (playerOnePoint == playerTwoPoint)
-                return "Deuce";
-            s = playerOnePoint > playerTwoPoint ? playerOne.getName() : playerTwo.getName();
-            return ((playerOnePoint - playerTwoPoint) * (playerOnePoint - playerTwoPoint) == 1) ? "Advantage " + s : "Win for " + s;
+                return Score.DEUCE.value;
+            String player = playerOnePoint > playerTwoPoint ? playerOne.getName() : playerTwo.getName();
+            return (abs(playerOnePoint - playerTwoPoint) == 1) ? "Advantage " + player : "Win for " + player;
         }
     }
 
