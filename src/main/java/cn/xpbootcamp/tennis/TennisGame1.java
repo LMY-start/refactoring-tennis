@@ -1,16 +1,7 @@
 package cn.xpbootcamp.tennis;
 
-public class TennisGame1 implements TennisGame {
+public class TennisGame1 extends TennisGame {
 
-    private int playerOneScore = 0;
-    private int playerTwoScore = 0;
-
-    public void wonPoint(String playerName) {
-        if (playerName.equals("player1"))
-            playerOneScore += 1;
-        else
-            playerTwoScore += 1;
-    }
 
     public String getScore() {
         StringBuilder score = new StringBuilder();
