@@ -1,15 +1,26 @@
 package cn.xpbootcamp.tennis;
 
 abstract class TennisGame {
-    int playerOneScore = 0;
-    int playerTwoScore = 0;
+    protected Player playerOne;
+    protected Player playerTwo;
 
-    public void wonPoint(String playerName) {
-        if (playerName.equals("player1"))
-            this.playerOneScore += 1;
-        else
-            this.playerTwoScore += 1;
+    public TennisGame() {
+        playerOne = new Player();
+        playerTwo = new Player();
     }
 
-   abstract String getScore();
+    public TennisGame(String playerOneName, String playerTwoName) {
+        playerOne = new Player(playerOneName);
+        playerTwo = new Player(playerTwoName);
+    }
+
+    public void wonPoint(String playerName) {
+        if (playerName.equals("player1")) {
+            playerOne.addPoint();
+        } else {
+            playerTwo.addPoint();
+        }
+    }
+
+    abstract String getScore();
 }

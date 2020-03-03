@@ -6,41 +6,38 @@ public class TennisGame1 extends TennisGame {
     public String getScore() {
         StringBuilder score = new StringBuilder();
         int tempScore;
-        if (playerOneScore == playerTwoScore)
-        {
-            switch (playerOneScore)
-            {
+        int playerOnePoint = playerOne.getPoint();
+        int playerTwoPoint = playerTwo.getPoint();
+        if (playerOnePoint == playerTwoPoint) {
+            switch (playerOnePoint) {
                 case 0:
-                        score = new StringBuilder("Love-All");
+                    score = new StringBuilder("Love-All");
                     break;
                 case 1:
-                        score = new StringBuilder("Fifteen-All");
+                    score = new StringBuilder("Fifteen-All");
                     break;
                 case 2:
-                        score = new StringBuilder("Thirty-All");
+                    score = new StringBuilder("Thirty-All");
                     break;
                 default:
-                        score = new StringBuilder("Deuce");
+                    score = new StringBuilder("Deuce");
                     break;
 
             }
-        }
-        else if (playerOneScore >=4 || playerTwoScore >=4)
-        {
-            int minusResult = playerOneScore - playerTwoScore;
-            if (minusResult==1) score = new StringBuilder("Advantage player1");
-            else if (minusResult ==-1) score = new StringBuilder("Advantage player2");
-            else if (minusResult>=2) score = new StringBuilder("Win for player1");
+        } else if (playerOnePoint >= 4 || playerTwoPoint >= 4) {
+            int minusResult = playerOnePoint - playerTwoPoint;
+            if (minusResult == 1) score = new StringBuilder("Advantage player1");
+            else if (minusResult == -1) score = new StringBuilder("Advantage player2");
+            else if (minusResult >= 2) score = new StringBuilder("Win for player1");
             else score = new StringBuilder("Win for player2");
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = playerOneScore;
-                else { score.append("-"); tempScore = playerTwoScore;}
-                switch(tempScore)
-                {
+        } else {
+            for (int i = 1; i < 3; i++) {
+                if (i == 1) tempScore = playerOnePoint;
+                else {
+                    score.append("-");
+                    tempScore = playerTwoPoint;
+                }
+                switch (tempScore) {
                     case 0:
                         score.append("Love");
                         break;
